@@ -9,10 +9,27 @@ import { Observable } from 'rxjs';
 export class UsuarioService {
 
   constructor(private http: HttpClient) { }
-
+  
   getStudentList(): Observable<any>{
-    return this.http.get(AppConstants.baseServidor + "usuario")
+    console.log(AppConstants.baseServidor + "usuario/")
+    return this.http.get(AppConstants.baseServidor + "usuario/")
   }
+
+  deletarUsuario(id: number): Observable<any>{
+    return this.http.delete(AppConstants.baseServidor + "usuario/" + id , {responseType: 'text'})
+  }
+
+  updateUsuario(id: number, usuario: any): Observable<any>{
+    return this.http.put(AppConstants.baseServidor + "usuario/" + id, usuario)
+  }
+
+  getUsuario(id: number): Observable<any>{
+    return this.http.get(AppConstants.baseServidor + "usuario/" + id)
+  }
+
+
+  
+
 }
 
 

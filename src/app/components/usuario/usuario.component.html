@@ -1,15 +1,13 @@
-<table>
+<table class="table">
     <thead>
-        <th>ID</th>
+        <th>Login</th>
         <th>Nome</th>
-        <th>CPF</th>
     </thead>
     <tbody>
         <tr *ngFor="let student of students">
-           <td>{{student.id}}</td>
-           <td>{{student.login}}</td>
-           <td>{{student.nome}}</td>
-
+            <td>{{student.userLogin}}</td>
+            <td>{{student.userNome}}</td>
+            <td><button class="btn btn-primary" (click)="deleteUsuario(student.id)">Deletar</button></td>
         </tr>
     </tbody>
 </table>

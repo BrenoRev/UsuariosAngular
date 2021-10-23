@@ -11,14 +11,15 @@ export class LoginComponent implements OnInit {
 
   title = 'Application';
 
-  usuario = {login: '', senha: ''};
+  blabla = {login: '', senha: ''};
 
   constructor(private loginService: LoginServiceService,
               ){
 
   }
   public login(){
-    this.loginService.login(this.usuario)
+    console.log(this.blabla)
+    this.loginService.login(this.blabla)
   }
 
   ngOnInit(): void {
