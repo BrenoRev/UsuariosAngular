@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-usuario-add',
   templateUrl: './usuario-add.component.html',
   styleUrls: ['./usuario-add.component.css']
 })
