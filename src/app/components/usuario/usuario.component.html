@@ -1,3 +1,12 @@
+<br>
+<form class="form-inline">
+    <div class="form-group mx-sm-3 mb-2">
+      <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="nome" placeholder="Nome">
+    </div>
+    <button type="button" class="btn btn-primary mb-2">Pesquisar</button>
+    <button type="button" [routerLink]="['/usuarioAdd']" id="margin-left" class="btn btn-warning mb-2">Novo</button>
+  </form>
+  <br>
 <table class="table">
     <thead>
         <th>Login</th>
@@ -8,6 +17,7 @@
             <td>{{student.userLogin}}</td>
             <td>{{student.userNome}}</td>
             <td><button class="btn btn-primary" (click)="deleteUsuario(student.id)">Deletar</button></td>
+            <td><button [routerLink]="['/usuarioAdd/', student.id]" class="btn btn-secondary" (click)="editarUsuario()">Editar</button></td>
         </tr>
     </tbody>
 </table>

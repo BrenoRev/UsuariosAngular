@@ -23,8 +23,12 @@ export class UsuarioService {
     return this.http.put(AppConstants.baseServidor + "usuario/" + id, usuario)
   }
 
-  getUsuario(id: number): Observable<any>{
+  getUsuarioId(id: number): Observable<any>{
     return this.http.get(AppConstants.baseServidor + "usuario/" + id)
+  }
+
+  getUsuarioNome(nome: string): Observable<any>{
+    return this.http.get(AppConstants.baseServidor + "usuario/name/" + nome)
   }
 
 

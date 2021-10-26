@@ -10,19 +10,35 @@ import { Component, OnInit } from '@angular/core';
 export class UsuarioComponent implements OnInit {
 
   students: User[] = []
+  nome!: string;
+
   constructor(private service: UsuarioService) { }
 
   ngOnInit(): void {
     this.service.getStudentList().subscribe( (data) => {
-      this.students = data
+    this.students = data
     })
   }
 
   deleteUsuario(id: number){
     this.service.deletarUsuario(id).subscribe( (data) => {
-      console.log(data);
+      
+      this.service.getStudentList().subscribe( (data) => {
+        this.students = data
+        })
+
     })
   } 
+
+  editarUsuario(){
+    
+  }
+
+  consultaUser(){
+    this.service.getUsuarioNome(this.nome).subscribe( (data) => {
+      this.students = data
+    })
+  }
 
   }
 
