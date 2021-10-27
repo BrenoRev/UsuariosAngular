@@ -19,10 +19,14 @@ export class UsuarioService {
     return this.http.delete(AppConstants.baseServidor + "usuario/" + id , {responseType: 'text'})
   }
 
-  updateUsuario(id: number, usuario: any): Observable<any>{
-    return this.http.put(AppConstants.baseServidor + "usuario/" + id, usuario)
+  updateUsuario(usuario: any): Observable<any>{
+    return this.http.put(AppConstants.baseServidor + "usuario/", usuario)
   }
 
+  patchUsuario(usuario: any): Observable<any>{
+    return this.http.patch(AppConstants.baseServidor + "usuario/patch", usuario)
+  }
+  
   getUsuarioId(id: number): Observable<any>{
     return this.http.get(AppConstants.baseServidor + "usuario/" + id)
   }
@@ -31,6 +35,9 @@ export class UsuarioService {
     return this.http.get(AppConstants.baseServidor + "usuario/name/" + nome)
   }
 
+  saveUsuario(usuario: any): Observable<any>{
+    return this.http.post(AppConstants.baseServidor + "usuario/register", usuario)
+  }
 
   
 
