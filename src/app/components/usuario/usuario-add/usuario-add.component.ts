@@ -1,5 +1,8 @@
+import { UsuarioService } from './../../../service/usuario.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/model/user';
+
 
 @Component({
   selector: 'app-usuario-add',
@@ -8,16 +11,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsuarioAddComponent implements OnInit {
 
-  constructor(private routeActive: ActivatedRoute) { }
+  usuario!: User;
+
+  constructor(private routeActive: ActivatedRoute
+            , private service: UsuarioService) { }
 
   ngOnInit(): void {
-    let id = this.routeActive.snapshot.paramMap.get('id');
-
+    let id = parseInt(this.routeActive.snapshot.paramMap.get('id')!);
+    
     if(id != null){
-      console.log(id);
-    }else{
-      console.log('Não tem id');
+      this.buscarUsuario(id);
     }
+    }
+
+    buscarUsuario(id: number){
+      this.service.getUsuarioId(id).subscribe(
+        (data) => {
+          this.usuario = data;
+        })
   }
 
 }

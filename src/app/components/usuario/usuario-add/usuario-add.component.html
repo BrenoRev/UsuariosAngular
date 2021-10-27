@@ -1,39 +1,25 @@
-<form id="padding-left">
+<form class="padding-left">
     <h3>Tela de usuario</h3>
 
     <div class="form-row">
-        <div class="form-group col-md6">
-            <label for="id">ID</label>
-            <input type="text" class="form-control" id="id" readonly="true" autocomplete="false">
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="login">Login</label>
-            <input type="text" class="form-control" id="login" autocomplete="false" required="true" name="login">
+            <input [(ngModel)]="usuario.userLogin" type="text" class="form-control" id="login" autocomplete="false" required="true" name="login">
         </div>
     </div>
 
     <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="email">Nome</label>
-            <input type="text" class="form-control" id="nome" autocomplete="false" required="true" name="nome">
+            <input [(ngModel)]="usuario.userNome" type="text" class="form-control" id="nome" autocomplete="false" required="true" name="nome">
         </div>
     </div>
 
     <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="senha">Senha</label>
-            <input type="password" class="form-control" id="senha" autocomplete="false" required="true" name="senha">
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-4">
             <button class="btn btn-primary"> Cadastrar</button>
-            <button class="btn btn-secondary" id="padding-left" > Novo</button>
-            <button [routerLink]="['/usuarioList']" class="btn btn-warning" id="padding-left"> Voltar</button>
+            <button class="btn btn-secondary padding-left" > Novo</button>
+            <button [routerLink]="['/usuarioList']" class="btn btn-warning padding-left"> Voltar</button>
         </div>
     </div>
 </form>
