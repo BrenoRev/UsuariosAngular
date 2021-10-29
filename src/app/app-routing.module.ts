@@ -1,3 +1,4 @@
+import { GuardiaoGuard } from './service/guardiao.guard';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
@@ -8,23 +9,23 @@ import { UsuarioAddComponent } from './components/usuario/usuario-add/usuario-ad
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: 'home', canActivate: [GuardiaoGuard],
     component: HomeComponent
   },
   {
-    path: 'login',
+    path: 'login', 
     component: LoginComponent
   },
   {
-    path: 'usuarioList',
+    path: 'usuarioList', canActivate: [GuardiaoGuard],
     component: UsuarioComponent
   },
   {
-    path: 'usuarioAdd',
+    path: 'usuarioAdd', canActivate: [GuardiaoGuard],
     component: HomeComponent
   }, 
   {
-    path: 'usuarioAdd/:id',
+    path: 'usuarioAdd/:id', canActivate: [GuardiaoGuard],
     component: UsuarioAddComponent
   },
   {

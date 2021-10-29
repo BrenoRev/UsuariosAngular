@@ -39,7 +39,14 @@ export class UsuarioService {
     return this.http.post(AppConstants.baseServidor + "usuario/register", usuario)
   }
 
-  
+  userAutenticado(){
+    if(localStorage.getItem("token") != null && localStorage.getItem("token") != undefined){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
 
 }
 
