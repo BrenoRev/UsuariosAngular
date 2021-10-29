@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   blabla = {login: '', senha: ''};
 
   constructor(private loginService: LoginServiceService,
-              ){
+              private route: Router){
 
   }
   public login(){
@@ -23,6 +23,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(localStorage.getItem('token') != null && localStorage.getItem('token')!.toString().trim() != null){
+      this.route.navigate(['/home']);
+    }
   }
-
 }

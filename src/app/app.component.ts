@@ -23,4 +23,11 @@ export class AppComponent implements OnInit{
     localStorage.clear();
     this.router.navigateByUrl('login')
   }
+
+  esconderMenu(): boolean{
+    if(localStorage.getItem('token') == null){
+      return true;
+    }
+    return false;
+  }
 }
