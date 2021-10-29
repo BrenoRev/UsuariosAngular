@@ -1,8 +1,7 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { catchError, tap } from 'rxjs/operators';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Injectable, NgModule } from '@angular/core';
-import { Observable } from 'rxjs';
-
-
+import { Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,12 +23,31 @@ export class HeaderInterceptorService implements HttpInterceptor{
         });
         
         // Se existir manda a autorização com a token
-        return next.handle(tokenRequest);
+        return next.handle(tokenRequest).pipe(
+          tap((event: HttpEvent<any>) => {
+            if(event instanceof HttpResponse && (event.status === 200 || event.status === 201)) {
+              alert('Sucesso: ' + event.status);
+            }
+          }),catchError(this.processaError))
       }else{
         // Se não, manda a requisição original
-        return next.handle(req);
+        return next.handle(req).pipe(catchError(this.processaError));
       }
   }
+  
+  processaError(error: HttpErrorResponse) {
+    let errorMessage = 'Erro Desconhecido';
+
+    if(error.error instanceof ErrorEvent) {
+      errorMessage = `Erro: ${error.error.message}`;
+    }
+    else {
+      errorMessage = `Código: ${error.error.code}, Mensagem: ${error.error.message}`;
+    }
+    window.alert(errorMessage);
+    return throwError(errorMessage);
+  }
+  
 }
 @NgModule({
   providers : [{

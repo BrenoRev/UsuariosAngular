@@ -21,6 +21,7 @@ export class UsuarioComponent implements OnInit {
   }
 
   deleteUsuario(id: number){
+    if(confirm ("Deseja realmente excluir o usuário?")){
     this.service.deletarUsuario(id).subscribe( (data) => {
       
       this.service.getStudentList().subscribe( (data) => {
@@ -28,17 +29,21 @@ export class UsuarioComponent implements OnInit {
         })
 
     })
+  }
   } 
 
-  editarUsuario(){
-    
-  }
-
   consultaUser(){
+    if(this.nome == ""){
+      this.service.getStudentList().subscribe( (data) => {
+        this.students = data
+      })
+    }else{
     this.service.getUsuarioNome(this.nome).subscribe( (data) => {
+      console.log(data)
       this.students = data
     })
   }
+}
 
   }
 
