@@ -88,7 +88,15 @@ export class UsuarioAddComponent implements OnInit {
     this.usuario.senha = '';
   }
 
+  deletarTelefone(id: number){
+    if(id !== null && confirm("Deseja remover?")){
+    this.service.removerTelefone(id).subscribe(
+      (data) => {
+        const index = this.usuario.userTelefones?.findIndex(x => x.id === id); // Acha o index do telefone na lista
+        this.usuario.userTelefones?.splice(index!, 1); // Remove o telefone da lista
+      }
+    );
+}
+}
 
-  }
-
-
+}

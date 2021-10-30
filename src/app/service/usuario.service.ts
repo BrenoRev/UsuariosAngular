@@ -10,8 +10,7 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
   
-  getStudentList(): Observable<any>{
-    console.log(AppConstants.baseServidor + "usuario/")
+  getStudentList(): Observable<any>{ 
     return this.http.get(AppConstants.baseServidor + "usuario/")
   }
 
@@ -47,7 +46,9 @@ export class UsuarioService {
     }
   }
 
-
+  removerTelefone(id: number): Observable<any>{
+    return this.http.delete(AppConstants.baseServidor + "usuario/removerTelefone/" + id, {responseType: 'text'})
+  }
 }
 
 

@@ -1,3 +1,11 @@
 .padding-left{
     margin-left: 5px;
 }
+
+.centralizar{
+    display: flex;
+    flex-grow: inherit;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
