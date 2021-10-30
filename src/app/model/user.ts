@@ -1,6 +1,8 @@
+import { Telefone } from './telefone';
 export interface User {
     id: number,
     userLogin: string,
     userNome: string,
-    senha?: string
+    senha?: string,
+    userTelefones?: Array<Telefone>
 }

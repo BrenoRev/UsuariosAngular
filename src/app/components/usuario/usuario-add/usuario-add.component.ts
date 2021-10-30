@@ -1,3 +1,4 @@
+import { Telefone } from './../../../model/telefone';
 import { UsuarioDTO } from './../../../model/usuario-dto';
 import { UsuarioService } from './../../../service/usuario.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,6 +17,7 @@ export class UsuarioAddComponent implements OnInit {
     id: 0,
     userLogin: '',
     userNome: '',
+    userTelefones: []
   }
 
   usuarioSave: UsuarioDTO = {
