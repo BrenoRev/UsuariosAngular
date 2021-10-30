@@ -49,6 +49,8 @@ export class UsuarioService {
   removerTelefone(id: number): Observable<any>{
     return this.http.delete(AppConstants.baseServidor + "usuario/removerTelefone/" + id, {responseType: 'text'})
   }
+
+  
 }
 
 

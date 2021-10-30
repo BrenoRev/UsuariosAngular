@@ -20,18 +20,25 @@ export class UsuarioAddComponent implements OnInit {
     userTelefones: []
   }
 
+  telefone: Telefone = new Telefone();
+  
+
   usuarioSave: UsuarioDTO = {
     id: 0,
     login: '',
     nome: '',
-    senha: ''
+    senha: '',
+    telefones: []
   }
 
   id!: number;
 
   constructor(private routeActive: ActivatedRoute
             , private service: UsuarioService,
-              private router: Router) { }
+              private router: Router) {
+
+                this.telefone.usuario = parseInt(this.routeActive.snapshot.paramMap.get('id')!);
+               }
 
   ngOnInit(): void {
    this.id = parseInt(this.routeActive.snapshot.paramMap.get('id')!);
@@ -53,7 +60,8 @@ export class UsuarioAddComponent implements OnInit {
     this.transferDTO(this.usuario);
 
     // Atualizando ou editando caso já exista um usuários
-    if(this.usuario.id != null && this.usuario.senha! == "" && this.usuario.id.toString().trim() != ""){
+    if(this.usuario.id != 0){
+      this.usuarioSave.telefones = this.usuario.userTelefones;
       this.service.patchUsuario(this.usuarioSave).subscribe(
         (data) => {
           this.usuario = data;
@@ -86,6 +94,7 @@ export class UsuarioAddComponent implements OnInit {
     this.usuario.userLogin = '';
     this.usuario.userNome = '';
     this.usuario.senha = '';
+    this.usuario.userTelefones = [];
   }
 
   deletarTelefone(id: number){
@@ -99,4 +108,8 @@ export class UsuarioAddComponent implements OnInit {
 }
 }
 
+  adicionarTelefone(){
+      this.usuario.userTelefones!.push(this.telefone);
+      this.telefone = new Telefone();
+    }
 }

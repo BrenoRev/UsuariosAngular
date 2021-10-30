@@ -1,4 +1,5 @@
-export interface Telefone {
-    id: number,
-    numero: number
+export class Telefone {
+    id!: number
+    numero!: string
+    usuario?: number
 }
