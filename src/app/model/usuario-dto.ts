@@ -6,5 +6,6 @@ export interface UsuarioDTO {
     nome: string,
     senha?: string,
     telefones?: Array<Telefone>
+    cpf: string
 }
 

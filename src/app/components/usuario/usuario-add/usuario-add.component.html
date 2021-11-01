@@ -29,6 +29,14 @@
 
     <div class="form-row">
         <div class="form-group col-md-12">
+            <label for="cpf">CPF</label>
+            <span style="color: red;"*ngIf="cpfValidate.invalid && cpfValidate.touched">*</span>
+            <input [(ngModel)]="usuario.userCpf" #cpfValidate="ngModel" type="text" class="form-control" id="cpf" autocomplete="false" required="true" name="cpf">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
             <button class="btn btn-primary" (click)="salvarUsuario()" [disabled]="formValidate.invalid"> Cadastrar</button>
             <button class="btn btn-secondary padding-left" (click)="novo()"> Novo</button>
             <button [routerLink]="['/usuarioList']" class="btn btn-warning padding-left"> Voltar</button>

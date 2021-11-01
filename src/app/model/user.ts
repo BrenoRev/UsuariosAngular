@@ -5,4 +5,5 @@ export interface User {
     userNome: string,
     senha?: string,
     userTelefones?: Array<Telefone>
+    userCpf: string
 }

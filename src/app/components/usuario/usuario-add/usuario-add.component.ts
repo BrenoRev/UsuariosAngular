@@ -17,7 +17,8 @@ export class UsuarioAddComponent implements OnInit {
     id: 0,
     userLogin: '',
     userNome: '',
-    userTelefones: []
+    userTelefones: [],
+    userCpf: ''
   }
 
   telefone: Telefone = new Telefone();
@@ -28,7 +29,8 @@ export class UsuarioAddComponent implements OnInit {
     login: '',
     nome: '',
     senha: '',
-    telefones: []
+    telefones: [],
+    cpf: ''
   }
 
   id!: number;
@@ -85,6 +87,7 @@ export class UsuarioAddComponent implements OnInit {
     this.usuarioSave.id = parseInt(usuario.id.toString());
     this.usuarioSave.login = usuario.userLogin;
     this.usuarioSave.nome= usuario.userNome;
+    this.usuarioSave.cpf = usuario.userCpf;
   }
 
   novo(){
