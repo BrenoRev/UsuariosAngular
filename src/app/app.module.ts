@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { NgxMaskModule , IConfig } from 'ngx-mask';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgxPopper } from 'angular-popper';
@@ -12,8 +13,8 @@ import { HttpInterceptorModule } from './service/header-interceptor.service';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { UsuarioAddComponent } from './components/usuario/usuario-add/usuario-add.component';
 
-
-
+// Configuração pra mascara de CPF
+export const optionsMask : Partial<IConfig> | (() => Partial<IConfig>) = {}
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { UsuarioAddComponent } from './components/usuario/usuario-add/usuario-ad
     NgxPopper,
     FormsModule,
     HttpClientModule,
-    HttpInterceptorModule
+    HttpInterceptorModule,
+    NgxMaskModule.forRoot(optionsMask)
   ],
   providers: [],
   bootstrap: [AppComponent]

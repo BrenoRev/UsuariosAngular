@@ -31,7 +31,7 @@
         <div class="form-group col-md-12">
             <label for="cpf">CPF</label>
             <span style="color: red;"*ngIf="cpfValidate.invalid && cpfValidate.touched">*</span>
-            <input [(ngModel)]="usuario.userCpf" #cpfValidate="ngModel" type="text" class="form-control" id="cpf" autocomplete="false" required="true" name="cpf">
+            <input mask="000.000.000-00" [(ngModel)]="usuario.userCpf" #cpfValidate="ngModel" type="text" class="form-control" id="cpf" autocomplete="false" required="true" name="cpf">
         </div>
     </div>
 
@@ -50,7 +50,7 @@
         <div class="card-body">
            <div class="form-row col-md-12">
                <div class="form-group">
-                <input type="text" [(ngModel)]="telefone.numero" id="numero" name="numero">
+                <input type="text" mask="(00) 00000-0000" [(ngModel)]="telefone.numero" id="numero" name="numero">
                </div>
                 
                <div class="form-group col-md-12">
@@ -62,7 +62,7 @@
                 <tr *ngFor="let fone of usuario.userTelefones">
                     <td *ngIf="fone.id == null">*</td>
                     <td *ngIf="fone.id != null">{{fone.id}}</td>
-                    <td>{{fone.numero}}</td>
+                    <td>{{fone.numero | mask:'(00) 00000-0000'}}</td>
                     <td><button class="btn btn-danger" (click)="deletarTelefone(fone.id)" *ngIf="fone.id != null">Deletar</button></td>
                 </tr>
             </tbody>
