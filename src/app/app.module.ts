@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxMaskModule , IConfig } from 'ngx-mask';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,7 +32,8 @@ export const optionsMask : Partial<IConfig> | (() => Partial<IConfig>) = {}
     FormsModule,
     HttpClientModule,
     HttpInterceptorModule,
-    NgxMaskModule.forRoot(optionsMask)
+    NgxMaskModule.forRoot(optionsMask),
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

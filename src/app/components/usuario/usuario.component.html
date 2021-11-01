@@ -13,7 +13,7 @@
         <th>Nome</th>
     </thead>
     <tbody>
-        <tr *ngFor="let student of students">
+        <tr *ngFor="let student of students | paginate:{ itemsPerPage:5, currentPage: p }">
             <td>{{student.userLogin}}</td>
             <td>{{student.userNome}}</td>
             <td><button class="btn btn-primary" (click)="deleteUsuario(student.id)">Deletar</button></td>
@@ -21,3 +21,8 @@
         </tr>
     </tbody>
 </table>
+
+<div>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    
+</div>

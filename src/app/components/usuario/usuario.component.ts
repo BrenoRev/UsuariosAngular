@@ -20,6 +20,8 @@ export class UsuarioComponent implements OnInit {
     })
   }
 
+  p!: number;
+
   deleteUsuario(id: number){
     if(confirm ("Deseja realmente excluir o usuário?")){
     this.service.deletarUsuario(id).subscribe( (data) => {
