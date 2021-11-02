@@ -50,6 +50,9 @@ export class UsuarioService {
     return this.http.delete(AppConstants.baseServidor + "usuario/removerTelefone/" + id, {responseType: 'text'})
   }
 
+  getStudentListPage(page: number): Observable<any>{
+    return this.http.get(AppConstants.baseServidor + "usuario/page/" + page)
+  }
   
 }
 

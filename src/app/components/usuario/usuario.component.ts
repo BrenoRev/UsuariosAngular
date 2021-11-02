@@ -1,3 +1,4 @@
+import { UsuarioDTO } from './../../model/usuario-dto';
 import { User } from './../../model/user';
 import { UsuarioService } from './../../service/usuario.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,14 +11,13 @@ import { Component, OnInit } from '@angular/core';
 export class UsuarioComponent implements OnInit {
 
   students: User[] = []
+  studentsMain : UsuarioDTO[] = []
   nome!: string;
 
   constructor(private service: UsuarioService) { }
 
   ngOnInit(): void {
-    this.service.getStudentList().subscribe( (data) => {
-    this.students = data.content;
-    })
+    this.carregarPagina(1);
   }
 
   p!: number;
@@ -49,7 +49,10 @@ export class UsuarioComponent implements OnInit {
 }
 
 carregarPagina(pagina: number){
-  console.log("Página -> " + pagina)
+  this.service.getStudentListPage(pagina-1).subscribe((data) => {
+    this.studentsMain = data.content
+    this.total = data.totalElements;
+  })
 }
 
   }

@@ -11,12 +11,14 @@
     <thead>
         <th>Login</th>
         <th>Nome</th>
+        <th>CPF</th>
     </thead>
     <tbody>
-        <tr *ngFor="let student of students | paginate:{ itemsPerPage:5, currentPage: p, totalItems : total }">
-            <td *ngIf="(student.id !=0)">{{student.userLogin}}</td>
-            <td *ngIf="(student.id !=0)">{{student.userNome}}</td>
-            <td *ngIf="(student.id !=0)"><button class="btn btn-primary" (click)="deleteUsuario(student.id)">Deletar</button></td>
+        <tr *ngFor="let student of studentsMain | paginate:{ itemsPerPage:5, currentPage: p, totalItems : total }">
+            <td *ngIf="(student.id !=0)">{{student.login}}</td>
+            <td *ngIf="(student.id !=0)">{{student.nome}}</td>
+            <td *ngIf="(student.id !=0)">{{student.cpf}}</td>
+            <td *ngIf="(student.id !=0)"><button class="btn btn-primary" (click)="deleteUsuario(student.id!)">Deletar</button></td>
             <td *ngIf="(student.id !=0)"><button [routerLink]="['/usuarioAdd/', student.id]" class="btn btn-secondary">Editar</button></td>
         </tr>
     </tbody>
