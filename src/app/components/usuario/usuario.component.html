@@ -13,16 +13,15 @@
         <th>Nome</th>
     </thead>
     <tbody>
-        <tr *ngFor="let student of students | paginate:{ itemsPerPage:5, currentPage: p }">
-            <td>{{student.userLogin}}</td>
-            <td>{{student.userNome}}</td>
-            <td><button class="btn btn-primary" (click)="deleteUsuario(student.id)">Deletar</button></td>
-            <td><button [routerLink]="['/usuarioAdd/', student.id]" class="btn btn-secondary">Editar</button></td>
+        <tr *ngFor="let student of students | paginate:{ itemsPerPage:5, currentPage: p, totalItems : total }">
+            <td *ngIf="(student.id !=0)">{{student.userLogin}}</td>
+            <td *ngIf="(student.id !=0)">{{student.userNome}}</td>
+            <td *ngIf="(student.id !=0)"><button class="btn btn-primary" (click)="deleteUsuario(student.id)">Deletar</button></td>
+            <td *ngIf="(student.id !=0)"><button [routerLink]="['/usuarioAdd/', student.id]" class="btn btn-secondary">Editar</button></td>
         </tr>
     </tbody>
 </table>
 
 <div>
-    <pagination-controls (pageChange)="p = $event"></pagination-controls>
-    
+    <pagination-controls (pageChange)="carregarPagina(p = $event)"></pagination-controls>
 </div>

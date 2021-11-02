@@ -16,11 +16,12 @@ export class UsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.getStudentList().subscribe( (data) => {
-    this.students = data
+    this.students = data.content;
     })
   }
 
   p!: number;
+  total!: number;
 
   deleteUsuario(id: number){
     if(confirm ("Deseja realmente excluir o usuário?")){
@@ -45,6 +46,10 @@ export class UsuarioComponent implements OnInit {
       this.students = data
     })
   }
+}
+
+carregarPagina(pagina: number){
+  console.log("Página -> " + pagina)
 }
 
   }
