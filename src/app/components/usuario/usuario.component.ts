@@ -1,5 +1,5 @@
+import { User } from 'src/app/model/user';
 import { UsuarioDTO } from './../../model/usuario-dto';
-import { User } from './../../model/user';
 import { UsuarioService } from './../../service/usuario.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -13,6 +13,12 @@ export class UsuarioComponent implements OnInit {
   students: User[] = []
   studentsMain : UsuarioDTO[] = []
   nome!: string;
+  
+  studentSend = {
+    id : 0,
+    login : "",
+    nome : ""
+  }
 
   constructor(private service: UsuarioService) { }
 
@@ -35,14 +41,20 @@ export class UsuarioComponent implements OnInit {
 
   consultaUser(){
     if(this.nome == ""){
-      this.service.getStudentList().subscribe( (data) => {
-        this.students = data
-      })
+      this.carregarPagina(1);
     }else{
     this.service.getUsuarioNome(this.nome).subscribe( (data) => {
-      console.log(data)
-      this.students = data
-    })
+      this.studentsMain = []
+
+        for(var i = 0; i < data.length; i++){
+        this.studentSend.id = data[i].id;
+        this.studentSend.login = data[i].userLogin;
+        this.studentSend.nome = data[i].userNome;
+        this.studentsMain.push(this.studentSend)
+        }
+        
+   
+      });
   }
 }
 
