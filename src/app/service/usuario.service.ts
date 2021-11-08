@@ -30,8 +30,8 @@ export class UsuarioService {
     return this.http.get(AppConstants.baseServidor + "usuario/" + id)
   }
 
-  getUsuarioNome(nome: string): Observable<any>{
-    return this.http.get(AppConstants.baseServidor + "usuario/name/" + nome)
+  getUsuarioNome(nome: string, page: number): Observable<any>{
+    return this.http.get(AppConstants.baseServidor + "usuario/name/" + nome + "/page/" + page)
   }
 
   saveUsuario(usuario: any): Observable<any>{

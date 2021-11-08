@@ -13,7 +13,7 @@ export class UsuarioComponent implements OnInit {
   students: User[] = []
   studentsMain : UsuarioDTO[] = []
   nome!: string;
-  
+
   studentSend = {
     id : 0,
     login : "",
@@ -43,23 +43,16 @@ export class UsuarioComponent implements OnInit {
     if(this.nome == ""){
       this.carregarPagina(1);
     }else{
-    this.service.getUsuarioNome(this.nome).subscribe( (data) => {
-      this.studentsMain = []
-
-        for(var i = 0; i < data.length; i++){
-        this.studentSend.id = data[i].id;
-        this.studentSend.login = data[i].userLogin;
-        this.studentSend.nome = data[i].userNome;
-        this.studentsMain.push(this.studentSend)
-        }
-        
-   
+    this.service.getUsuarioNome(this.nome, 1).subscribe( (data) => {
+      this.studentsMain = data.content
+      this.total = data.totalElements;   
       });
   }
 }
 
 carregarPagina(pagina: number){
   this.service.getStudentListPage(pagina-1).subscribe((data) => {
+   
     this.studentsMain = data.content
     this.total = data.totalElements;
   })

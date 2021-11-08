@@ -12,6 +12,8 @@
         <th>Login</th>
         <th>Nome</th>
         <th>CPF</th>
+        <th>Delete</th>
+        <th>Editar</th>
     </thead>
     <tbody>
         <tr *ngFor="let student of studentsMain | paginate:{ itemsPerPage:5, currentPage: p, totalItems : total }">
