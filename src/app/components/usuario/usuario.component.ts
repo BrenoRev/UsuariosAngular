@@ -27,9 +27,7 @@ export class UsuarioComponent implements OnInit {
     if(confirm ("Deseja realmente excluir o usuário?")){
     this.service.deletarUsuario(id).subscribe( (data) => {
       
-      this.service.getStudentList().subscribe( (data) => {
-        this.students = data
-        })
+      this.studentsMain.splice(this.studentsMain.findIndex(x => x.id == id), 1)
 
     })
   }
