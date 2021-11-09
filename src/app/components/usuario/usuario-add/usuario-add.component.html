@@ -43,35 +43,5 @@
         </div>
     </div>
 
-    <div class="card text-center col-md-12">
-        <div class="card-header">
-            <h3>Telefone Contato</h3>
-            <h5> [ Disabled ]</h5>
-        </div>
-        <div class="card-body">
-           <div class="form-row col-md-12">
-               <div class="form-group">
-                   <!--[(ngModel)]="telefone.numero"-->
-                <input type="text" mask="(00) 00000-0000"  id="numero" name="numero">
-               </div>
-                
-               <div class="form-group col-md-12">
-                   <button disabled class="btn btn-primary padding-left" (click)="adicionarTelefone()">Salvar </button>
-               </div>
-           </div>
-           <table class="table col-md-12">
-            <tbody>
-                <tr *ngFor="let fone of usuario.userTelefones">
-                    <td *ngIf="fone.id == null">*</td>
-                    <td *ngIf="fone.id != null">{{fone.id}}</td>
-                    <td>{{fone.numero | mask:'(00) 00000-0000'}}</td>
-                    <td><button disabled class="btn btn-danger" (click)="deletarTelefone(fone.id)" *ngIf="fone.id != null">Deletar</button></td>
-                </tr>
-            </tbody>
-        </table>
-        </div>
-    </div>
-
-
 </form>
 </div>

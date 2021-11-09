@@ -1,4 +1,4 @@
-import { Telefone } from './../../../model/telefone';
+
 import { UsuarioDTO } from './../../../model/usuario-dto';
 import { UsuarioService } from './../../../service/usuario.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,11 +17,8 @@ export class UsuarioAddComponent implements OnInit {
     id: 0,
     userLogin: '',
     userNome: '',
-    userTelefones: [],
     userCpf: ''
   }
-
-  telefone: Telefone = new Telefone();
   
 
   usuarioSave: UsuarioDTO = {
@@ -29,7 +26,6 @@ export class UsuarioAddComponent implements OnInit {
     login: '',
     nome: '',
     senha: '',
-    telefones: [],
     cpf: ''
   }
 
@@ -38,8 +34,6 @@ export class UsuarioAddComponent implements OnInit {
   constructor(private routeActive: ActivatedRoute
             , private service: UsuarioService,
               private router: Router) {
-
-                this.telefone.usuario = parseInt(this.routeActive.snapshot.paramMap.get('id')!);
                }
 
   ngOnInit(): void {
@@ -63,7 +57,6 @@ export class UsuarioAddComponent implements OnInit {
 
     // Atualizando ou editando caso já exista um usuários
     if(this.usuario.id != 0){
-      this.usuarioSave.telefones = this.usuario.userTelefones;
       this.service.patchUsuario(this.usuarioSave).subscribe(
         (data) => {
           this.usuario = data;
@@ -97,22 +90,9 @@ export class UsuarioAddComponent implements OnInit {
     this.usuario.userLogin = '';
     this.usuario.userNome = '';
     this.usuario.senha = '';
-    this.usuario.userTelefones = [];
   }
 
-  deletarTelefone(id: number){
-    if(id !== null && confirm("Deseja remover?")){
-    this.service.removerTelefone(id).subscribe(
-      (data) => {
-        const index = this.usuario.userTelefones?.findIndex(x => x.id === id); // Acha o index do telefone na lista
-        this.usuario.userTelefones?.splice(index!, 1); // Remove o telefone da lista
-      }
-    );
-}
 }
 
-  adicionarTelefone(){
-      this.usuario.userTelefones!.push(this.telefone);
-      this.telefone = new Telefone();
-    }
-}
+
+
