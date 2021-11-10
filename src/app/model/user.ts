@@ -3,5 +3,6 @@ export interface User {
     userLogin: string,
     userNome: string,
     senha?: string,
-    userCpf: string
+    userCpf: string,
+    dataNascimento: string
 }

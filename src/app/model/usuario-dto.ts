@@ -3,6 +3,7 @@ export interface UsuarioDTO {
     login?: string,
     nome?: string,
     senha?: string,
-    cpf?: string
+    cpf?: string,
+    dataNascimento: string
 }
 

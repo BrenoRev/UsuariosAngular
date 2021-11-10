@@ -2,14 +2,79 @@
 import { UsuarioDTO } from './../../../model/usuario-dto';
 import { UsuarioService } from './../../../service/usuario.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { User } from 'src/app/model/user';
+import { NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+
+@Injectable()
+export class FormatDateAdapter extends NgbDateAdapter<string>{
+
+  readonly DELIMITER = '/';
+
+  fromModel(value: string | null): NgbDateStruct | null {
+    if(value){
+      let data = value.split(this.DELIMITER);
+      return {
+        day: this.validarDiaMes(parseInt(data[0], 10)),
+        month: this.validarDiaMes(parseInt(data[1], 10)),
+        year: parseInt(data[2], 10)
+      };
+    }
+    return null
+  }
+  toModel(date: NgbDateStruct | null): string | null {
+    return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : null;
+  }
+
+  validarDiaMes(valor: number): number{
+    if(valor.toString() != '' && (valor) <= 9){
+      return parseInt('0' + valor);
+    }
+    return valor;
+  }
+}
+
+@Injectable()
+export class FormataData extends NgbDateParserFormatter{
+  readonly DELIMITER = '/';
+
+  parse(value: string): NgbDateStruct | null {
+    if(value){
+      let data = value.split(this.DELIMITER);
+      return {
+        day: parseInt(data[0], 10),
+        month: parseInt(data[1], 10),
+        year: parseInt(data[2], 10)
+      };
+    }
+    return null;
+  }
+  format(date: NgbDateStruct | null): string {
+    return date ? this.validarDiaMes(date.day) + this.DELIMITER + this.validarDiaMes(date.month) + this.DELIMITER + date.year : '';
+  }
+
+  toModel(date: NgbDateStruct | null): string | null {
+    return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : null;
+  }
+
+  validarDiaMes(valor: number){
+    if(valor.toString() != '' && (valor) <= 9){
+      return '0' + valor;
+    }
+    return valor;
+  }
+
+}
 
 
 @Component({
   selector: 'app-usuario-add',
   templateUrl: './usuario-add.component.html',
-  styleUrls: ['./usuario-add.component.css']
+  styleUrls: ['./usuario-add.component.css'],
+  providers: [{
+  provide: NgbDateParserFormatter, useClass: FormataData
+  }, 
+  {provide: NgbDateAdapter, useClass: FormatDateAdapter}]
 })
 export class UsuarioAddComponent implements OnInit {
 
@@ -17,7 +82,8 @@ export class UsuarioAddComponent implements OnInit {
     id: 0,
     userLogin: '',
     userNome: '',
-    userCpf: ''
+    userCpf: '',
+    dataNascimento: ''
   }
   
 
@@ -26,7 +92,8 @@ export class UsuarioAddComponent implements OnInit {
     login: '',
     nome: '',
     senha: '',
-    cpf: ''
+    cpf: '',
+    dataNascimento: ''
   }
 
   id!: number;
@@ -47,6 +114,7 @@ export class UsuarioAddComponent implements OnInit {
     buscarUsuario(id: number){
       this.service.getUsuarioId(id).subscribe(
         (data) => {
+          console.log(data.dataNascimento)
           this.usuario = data;
         })
   }
@@ -72,7 +140,6 @@ export class UsuarioAddComponent implements OnInit {
           console.log(data)
         }
       );
-      
     }
   }
 
@@ -81,6 +148,7 @@ export class UsuarioAddComponent implements OnInit {
     this.usuarioSave.login = usuario.userLogin;
     this.usuarioSave.nome= usuario.userNome;
     this.usuarioSave.cpf = usuario.userCpf;
+    this.usuarioSave.dataNascimento = usuario.dataNascimento;
   }
 
   novo(){
@@ -90,6 +158,7 @@ export class UsuarioAddComponent implements OnInit {
     this.usuario.userLogin = '';
     this.usuario.userNome = '';
     this.usuario.senha = '';
+    this.usuario.dataNascimento = '';
   }
 
 }
