@@ -8,4 +8,5 @@ export class User {
     dataNascimento!: string
     profissao! : Profissao;
 
+    salario!: DoubleRange;
 }

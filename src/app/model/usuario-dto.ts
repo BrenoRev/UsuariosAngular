@@ -8,5 +8,7 @@ export class UsuarioDTO {
     cpf?: string
     dataNascimento?: string
     profissao! : Profissao;
+
+    salario!: DoubleRange;
 }
 

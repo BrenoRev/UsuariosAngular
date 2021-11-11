@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { HttpInterceptorModule } from './service/header-interceptor.service';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { UsuarioAddComponent } from './components/usuario/usuario-add/usuario-add.component';
+import { NgxCurrencyModule } from 'ngx-currency';
 
 // Configuração pra mascara de CPF
 export const optionsMask : Partial<IConfig> | (() => Partial<IConfig>) = {}
@@ -35,7 +36,8 @@ export const optionsMask : Partial<IConfig> | (() => Partial<IConfig>) = {}
     HttpInterceptorModule,
     NgxMaskModule.forRoot(optionsMask),
     NgxPaginationModule,
-    NgbModule
+    NgbModule,
+    NgxCurrencyModule
   ],
   providers: [],
   bootstrap: [AppComponent]

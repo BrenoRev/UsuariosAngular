@@ -132,11 +132,11 @@ export class UsuarioAddComponent implements OnInit {
         // Salvando um novo usuário
         this.usuarioSave.id = undefined;
         this.usuarioSave.senha = this.usuario.senha;
+        this.usuarioSave.salario = this.usuario.salario;
         //this.usuarioSave.profissao.id = this.idprofissao;
         console.log(this.usuarioSave);
         this.service.saveUsuario(this.usuarioSave).subscribe((data) => {
-          this.usuario = data;
-          console.log(this.usuario.profissao.id)
+          this.usuario = data
         }
       );
     }
@@ -148,6 +148,7 @@ export class UsuarioAddComponent implements OnInit {
     this.usuarioSave.nome= usuario.userNome;
     this.usuarioSave.cpf = usuario.userCpf;
     this.usuarioSave.dataNascimento = usuario.dataNascimento;
+    this.usuarioSave.salario = usuario.salario;
     //this.usuarioSave.profissao = usuario.profissao;
   }
 
