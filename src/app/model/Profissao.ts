@@ -1,4 +1,4 @@
-export class Profissao {
-    id!: number;
-    descricao!: string
+export interface Profissao {
+    id: Number;
+    descricao: String
 }

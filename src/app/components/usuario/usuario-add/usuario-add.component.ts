@@ -78,18 +78,22 @@ export class FormataData extends NgbDateParserFormatter{
 })
 export class UsuarioAddComponent implements OnInit {
 
-  /*
- 
   idprofissao!:number
+
+  sendProfissao: Profissao = {
+    id: this.idprofissao,
+    descricao: 'empty'
+  }
+
   profissoes! : Array<Profissao>
-  */
+  
   usuario = new User();
 
   usuarioSave = new UsuarioDTO();
 
-  id!: number;
+  ident!: number;
 
-
+ 
 
   constructor(private routeActive: ActivatedRoute
             , private service: UsuarioService,
@@ -98,16 +102,17 @@ export class UsuarioAddComponent implements OnInit {
 
   ngOnInit(): void {
 
-   this.id = parseInt(this.routeActive.snapshot.paramMap.get('id')!);
+    this.ident = parseInt(this.routeActive.snapshot.paramMap.get('id')!);
+    this.usuario.id = this.ident
 
-    if(this.id != null){
-      this.buscarUsuario(this.id);
+    if(this.ident != null){
+      this.buscarUsuario(this.ident);
     }
-    /*
+    
     this.service.getProfissaoList().subscribe(data => {
       this.profissoes = data;
     });
-    */
+    
   }
   
     buscarUsuario(id: number){
@@ -118,7 +123,7 @@ export class UsuarioAddComponent implements OnInit {
   }
 
   salvarUsuario(){
-
+    console.log("id da profissao " + this.idprofissao)
     // Criar a entidade DTO
     this.transferDTO(this.usuario);
 
@@ -126,14 +131,17 @@ export class UsuarioAddComponent implements OnInit {
     if(this.usuario.id != 0){
       this.service.patchUsuario(this.usuarioSave).subscribe(
         (data) => {
-         // this.profissoes = data;
+          this.profissoes = data;
         });   
       }else{
         // Salvando um novo usuário
         this.usuarioSave.id = undefined;
         this.usuarioSave.senha = this.usuario.senha;
         this.usuarioSave.salario = this.usuario.salario;
-        //this.usuarioSave.profissao.id = this.idprofissao;
+        this.usuarioSave.profissao = this.sendProfissao;
+        console.log("usuario save" + this.usuarioSave)
+        console.log("Profissao usuario " +this.usuarioSave.profissao)
+        console.log("Send profissao "+this.sendProfissao)
         console.log(this.usuarioSave);
         this.service.saveUsuario(this.usuarioSave).subscribe((data) => {
           this.usuario = data
@@ -149,18 +157,17 @@ export class UsuarioAddComponent implements OnInit {
     this.usuarioSave.cpf = usuario.userCpf;
     this.usuarioSave.dataNascimento = usuario.dataNascimento;
     this.usuarioSave.salario = usuario.salario;
-    //this.usuarioSave.profissao = usuario.profissao;
+    this.usuarioSave.profissao = this.sendProfissao
   }
 
   novo(){
     this.router.navigateByUrl('/usuarioAdd/0');
-    this.id = parseInt(this.routeActive.snapshot.paramMap.get('id')!);
+    this.ident = parseInt(this.routeActive.snapshot.paramMap.get('id')!);
     this.usuario.id = 0;
     this.usuario.userLogin = '';
     this.usuario.userNome = '';
     this.usuario.senha = '';
     this.usuario.dataNascimento = '';
-    //this.usuario.profissao = new Profissao(0,'');
   }
 
 }
