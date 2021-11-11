@@ -39,7 +39,7 @@
             <label for="dataNascimento">Nascimento</label>
             <span style="color: red;"*ngIf="nascimentoValidate.invalid && nascimentoValidate.touched">*</span>
         <div class="input-group">
-            <input #nascimentoValidate="ngModel" type="text"class="form-control" id="dataNascimento" 
+            <input #nascimentoValidate="ngModel" type="text" class="form-control" id="dataNascimento" 
             autocomplete="false" required="true" name="dataNascimento" 
             placeholder="dd/mm/yyyy" ngbDatepicker #dataNascimento="ngbDatepicker" [(ngModel)]="usuario.dataNascimento">
    
@@ -48,8 +48,18 @@
             </div>
         </div>
     </div>
-
-
+    <!--
+    <div class="form-group">
+        <label for="profissao">Profissões</label>
+        <span *ngIf="profissaoValidate.invalid && nascimentoValidate.touched">*</span>
+        <span style="color: red;">*</span>
+        <select name="profissoes" id="profissao" 
+        #profissaoValidate="ngModel" class="form-control" required="true"
+        [(ngModel)]="usuario.profissao.id">
+            <option [value]="p.id" *ngFor="let p in profissoes">{{p.descricao}}</option>
+        </select>
+    </div>
+    -->
     <div class="form-row">
         <div class="form-group col-md-12">
             <button class="btn btn-primary" (click)="salvarUsuario()" [disabled]="formValidate.invalid"> Cadastrar</button>

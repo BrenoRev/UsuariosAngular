@@ -1,9 +1,12 @@
-export interface UsuarioDTO {
-    id?: number,
-    login?: string,
-    nome?: string,
-    senha?: string,
-    cpf?: string,
-    dataNascimento: string
+import { Profissao } from './Profissao';
+
+export class UsuarioDTO {
+    id?: number
+    login?: string
+    nome?: string
+    senha?: string
+    cpf?: string
+    dataNascimento?: string
+    profissao! : Profissao;
 }
 

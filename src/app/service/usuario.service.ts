@@ -54,6 +54,9 @@ export class UsuarioService {
     return this.http.get(AppConstants.baseServidor + "usuario/page/" + page)
   }
   
+  getProfissaoList(): Observable<any>{
+    return this.http.get(AppConstants.baseServidor + "profissao/")
+  }
 }
 
 

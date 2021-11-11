@@ -1,10 +1,10 @@
-
 import { UsuarioDTO } from './../../../model/usuario-dto';
 import { UsuarioService } from './../../../service/usuario.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, Injectable, OnInit } from '@angular/core';
 import { User } from 'src/app/model/user';
 import { NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { Profissao } from 'src/app/model/Profissao';
 
 @Injectable()
 export class FormatDateAdapter extends NgbDateAdapter<string>{
@@ -78,25 +78,18 @@ export class FormataData extends NgbDateParserFormatter{
 })
 export class UsuarioAddComponent implements OnInit {
 
-  usuario: User = {
-    id: 0,
-    userLogin: '',
-    userNome: '',
-    userCpf: '',
-    dataNascimento: ''
-  }
-  
+  /*
+ 
+  idprofissao!:number
+  profissoes! : Array<Profissao>
+  */
+  usuario = new User();
 
-  usuarioSave: UsuarioDTO = {
-    id: 0,
-    login: '',
-    nome: '',
-    senha: '',
-    cpf: '',
-    dataNascimento: ''
-  }
+  usuarioSave = new UsuarioDTO();
 
   id!: number;
+
+
 
   constructor(private routeActive: ActivatedRoute
             , private service: UsuarioService,
@@ -104,22 +97,28 @@ export class UsuarioAddComponent implements OnInit {
                }
 
   ngOnInit(): void {
+
    this.id = parseInt(this.routeActive.snapshot.paramMap.get('id')!);
-    
+
     if(this.id != null){
       this.buscarUsuario(this.id);
     }
-    }
-
+    /*
+    this.service.getProfissaoList().subscribe(data => {
+      this.profissoes = data;
+    });
+    */
+  }
+  
     buscarUsuario(id: number){
       this.service.getUsuarioId(id).subscribe(
         (data) => {
-          console.log(data.dataNascimento)
           this.usuario = data;
         })
   }
 
   salvarUsuario(){
+
     // Criar a entidade DTO
     this.transferDTO(this.usuario);
 
@@ -127,17 +126,17 @@ export class UsuarioAddComponent implements OnInit {
     if(this.usuario.id != 0){
       this.service.patchUsuario(this.usuarioSave).subscribe(
         (data) => {
-          this.usuario = data;
-          console.log(data)
+         // this.profissoes = data;
         });   
       }else{
         // Salvando um novo usuário
         this.usuarioSave.id = undefined;
         this.usuarioSave.senha = this.usuario.senha;
-        
+        //this.usuarioSave.profissao.id = this.idprofissao;
+        console.log(this.usuarioSave);
         this.service.saveUsuario(this.usuarioSave).subscribe((data) => {
           this.usuario = data;
-          console.log(data)
+          console.log(this.usuario.profissao.id)
         }
       );
     }
@@ -149,6 +148,7 @@ export class UsuarioAddComponent implements OnInit {
     this.usuarioSave.nome= usuario.userNome;
     this.usuarioSave.cpf = usuario.userCpf;
     this.usuarioSave.dataNascimento = usuario.dataNascimento;
+    //this.usuarioSave.profissao = usuario.profissao;
   }
 
   novo(){
@@ -159,6 +159,7 @@ export class UsuarioAddComponent implements OnInit {
     this.usuario.userNome = '';
     this.usuario.senha = '';
     this.usuario.dataNascimento = '';
+    //this.usuario.profissao = new Profissao(0,'');
   }
 
 }
