@@ -82,7 +82,7 @@ export class UsuarioAddComponent implements OnInit {
 
   sendProfissao: Profissao = {
     id: this.idprofissao,
-    descricao: 'empty'
+    descricao: ''
   }
 
   profissoes! : Array<Profissao>
@@ -119,11 +119,11 @@ export class UsuarioAddComponent implements OnInit {
       this.service.getUsuarioId(id).subscribe(
         (data) => {
           this.usuario = data;
+          this.idprofissao = this.usuario.userProfissao.id;
         })
   }
 
   salvarUsuario(){
-    console.log("id da profissao " + this.idprofissao)
     // Criar a entidade DTO
     this.transferDTO(this.usuario);
 

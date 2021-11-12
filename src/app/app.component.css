@@ -1,0 +1,13 @@
+.align{
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-nav{
+    
+ flex-direction: row;
+}
+.btn-dark{
+    margin-left: 10px;
+    width: min-content;
+}

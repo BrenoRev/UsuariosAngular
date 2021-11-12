@@ -1,4 +1,4 @@
 export interface Profissao {
-    id: Number;
+    id: number;
     descricao: String
 }

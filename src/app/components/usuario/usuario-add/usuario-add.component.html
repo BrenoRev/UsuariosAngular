@@ -61,7 +61,7 @@
         <label for="profissao">Profissões</label>
         <span style="color: red;"*ngIf="profissaoValidate.invalid && profissaoValidate.touched">*</span>
         <select name="profissoes" id="profissao" 
-        #profissaoValidate="ngModel" class="form-control" required="true" [(ngModel)]="idprofissao" faça um (change)="this.sendProfissao.id = this.idprofissao">
+        #profissaoValidate="ngModel" class="form-control" required="true" [(ngModel)]="idprofissao" (change)="this.sendProfissao.id = this.idprofissao">
             <option [selected]="this.sendProfissao.id" [ngValue]="p.id" *ngFor="let p of profissoes">{{p.descricao}}</option>
         </select>
     </div>
