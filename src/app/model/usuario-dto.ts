@@ -7,8 +7,8 @@ export class UsuarioDTO {
     senha?: string
     cpf?: string
     dataNascimento?: string
-    profissao! : Profissao;
-
-    salario!: DoubleRange;
+    profissao?: Profissao;
+    email?: string
+    salario?: DoubleRange;
 }
 

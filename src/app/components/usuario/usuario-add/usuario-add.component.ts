@@ -137,12 +137,8 @@ export class UsuarioAddComponent implements OnInit {
         // Salvando um novo usuário
         this.usuarioSave.id = undefined;
         this.usuarioSave.senha = this.usuario.senha;
-        this.usuarioSave.salario = this.usuario.salario;
+        this.usuarioSave.salario = this.usuario.userSalario;
         this.usuarioSave.profissao = this.sendProfissao;
-        console.log("usuario save" + this.usuarioSave)
-        console.log("Profissao usuario " +this.usuarioSave.profissao)
-        console.log("Send profissao "+this.sendProfissao)
-        console.log(this.usuarioSave);
         this.service.saveUsuario(this.usuarioSave).subscribe((data) => {
           this.usuario = data
         }
@@ -155,9 +151,10 @@ export class UsuarioAddComponent implements OnInit {
     this.usuarioSave.login = usuario.userLogin;
     this.usuarioSave.nome= usuario.userNome;
     this.usuarioSave.cpf = usuario.userCpf;
-    this.usuarioSave.dataNascimento = usuario.dataNascimento;
-    this.usuarioSave.salario = usuario.salario;
+    this.usuarioSave.dataNascimento = usuario.userDataNascimento;
+    this.usuarioSave.salario = usuario.userSalario;
     this.usuarioSave.profissao = this.sendProfissao
+    this.usuarioSave.email = usuario.userEmail;
   }
 
   novo(){
@@ -167,7 +164,7 @@ export class UsuarioAddComponent implements OnInit {
     this.usuario.userLogin = '';
     this.usuario.userNome = '';
     this.usuario.senha = '';
-    this.usuario.dataNascimento = '';
+    this.usuario.userDataNascimento = '';
   }
 
 }

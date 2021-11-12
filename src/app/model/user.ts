@@ -5,8 +5,8 @@ export class User {
     userNome!: string
     senha?: string
     userCpf!: string
-    dataNascimento!: string
-    profissao!: Profissao
-
-    salario!: DoubleRange;
+    userDataNascimento!: string
+    userProfissao!: Profissao
+    userEmail! : string
+    userSalario!: DoubleRange;
 }
