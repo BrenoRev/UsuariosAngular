@@ -1,6 +1,15 @@
 .formulario{
-    padding-top: calc(50% - 30%);
+    padding-top: 20px;
     margin: auto;
     width: 300px;
     height: 300px;
+}
+
+#send{
+    margin-top: 15px;
+}
+
+.marg{
+    text-align: center;
+    margin-top: 5px;
 }

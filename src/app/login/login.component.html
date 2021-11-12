@@ -2,19 +2,30 @@
     <h3>Login do Sistema</h3>
     <div class="form-group">
         <label for="login">Login</label>
-        <input [(ngModel)]="blabla.login"  #user="ngModel" type="text" class="form-control" id="login" name="login" placeholder="Seu login" required>
-        <div *ngIf="user.invalid && user.touched" class="alert alert-danger">
+        <input [(ngModel)]="usuario.login"  #user="ngModel" type="text" class="form-control" id="login" name="login" placeholder="Seu login" required>
+        <div *ngIf="user.invalid && user.touched" class="alert alert-danger marg">
             Login invalido
         </div>
     </div>
 
     <div class="form-group">
         <label for="senha">Senha</label>
-        <input [(ngModel)]="blabla.senha" type="password" #senha="ngModel" class="form-control" id="senha" name="senha" placeholder="Informe a senha" required>
-        <div *ngIf="senha.invalid && senha.touched" class="alert alert-danger">
+        <input [(ngModel)]="usuario.senha" type="password" #senha="ngModel" class="form-control" id="senha" name="senha" placeholder="Informe a senha" required>
+        <div *ngIf="senha.invalid && senha.touched" class="alert alert-danger marg">
             Senha invalida
         </div>
     </div>
 
-    <button (click)="login()" type="submit" class="btn btn-primary" [disabled]="user.invalid" >Acessar</button>
+    <button (click)="login()" type="submit" class="btn btn-primary" [disabled]="user.invalid || senha.invalid" >Acessar</button>
+
+    <form class="formulario">
+        <h3>Recuperação de Conta</h3>
+            <input #recuperarValidate="ngModel" class="form-control" type="email" [(ngModel)]="usuarioDTO.email" required="true" placeholder="Email@email.com" name="email" id="email">
+            <div *ngIf="recuperarValidate.invalid && recuperarValidate.touched" class="alert alert-danger marg">
+                Digite um email valido
+            </div>
+            <button (click)="recuperar()" type="submit" class="btn btn-primary" id="send" [disabled]="recuperarValidate.invalid">Recuperar</button>
+        </form>
 </form>
+
+    

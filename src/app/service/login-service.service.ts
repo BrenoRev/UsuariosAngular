@@ -1,3 +1,5 @@
+import { UsuarioDTO } from './../model/usuario-dto';
+import { User } from 'src/app/model/user';
 import { AppConstants } from './../app-constants';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -28,5 +30,16 @@ export class LoginServiceService {
 
   loggedIn(){
     return !!localStorage.getItem("token")
+  }
+
+  recuperar(email: string){
+    let user = new UsuarioDTO();
+    user.email = email
+
+    this.http.post<any>(AppConstants.baseServidor + "recuperar/", user).subscribe(data =>{
+      alert(JSON.parse(JSON.stringify(data)).error)
+    }, error => {
+      alert("Erro ao recuperar login")
+    })
   }
 }
