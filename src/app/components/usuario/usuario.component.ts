@@ -1,7 +1,8 @@
-import { User } from 'src/app/model/user';
-import { UsuarioDTO } from './../../model/usuario-dto';
-import { UsuarioService } from './../../service/usuario.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { User } from "src/app/model/user";
+import { UsuarioDTO } from "src/app/model/usuario-dto";
+import { UsuarioService } from "src/app/service/usuario.service";
+
 
 @Component({
   selector: 'app-usuario',

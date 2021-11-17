@@ -4,7 +4,8 @@ import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { UsuarioAddComponent } from './components/usuario/usuario-add/usuario-add.component';
+import { UsuarioAddComponent } from './components/usuario-add/usuario-add.component';
+
 
 
 const routes: Routes = [

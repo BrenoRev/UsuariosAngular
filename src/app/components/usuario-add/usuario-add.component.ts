@@ -1,10 +1,11 @@
-import { UsuarioDTO } from './../../../model/usuario-dto';
-import { UsuarioService } from './../../../service/usuario.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Component, Injectable, OnInit } from '@angular/core';
-import { User } from 'src/app/model/user';
-import { NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { Profissao } from 'src/app/model/Profissao';
+import { Injectable, Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { NgbDateAdapter, NgbDateStruct, NgbDateParserFormatter } from "@ng-bootstrap/ng-bootstrap";
+import { Profissao } from "src/app/model/Profissao";
+import { User } from "src/app/model/user";
+import { UsuarioDTO } from "src/app/model/usuario-dto";
+import { UsuarioService } from "src/app/service/usuario.service";
+
 
 @Injectable()
 export class FormatDateAdapter extends NgbDateAdapter<string>{

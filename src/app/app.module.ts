@@ -12,9 +12,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { HttpInterceptorModule } from './service/header-interceptor.service';
-import { UsuarioComponent } from './components/usuario/usuario.component';
-import { UsuarioAddComponent } from './components/usuario/usuario-add/usuario-add.component';
 import { NgxCurrencyModule } from 'ngx-currency';
+import { UsuarioAddComponent } from './components/usuario-add/usuario-add.component';
+import { UsuarioComponent } from './components/usuario/usuario.component';
+
 
 // Configuração pra mascara de CPF
 export const optionsMask : Partial<IConfig> | (() => Partial<IConfig>) = {}
