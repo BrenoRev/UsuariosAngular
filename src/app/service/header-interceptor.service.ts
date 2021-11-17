@@ -41,8 +41,10 @@ export class HeaderInterceptorService implements HttpInterceptor{
     if(error.error instanceof ErrorEvent) {
       errorMessage = `Erro: ${error.error.message}`;
     }
-    else {
-      errorMessage = `Código: ${error.error.code}, Mensagem: ${error.error.message}`;
+    else if(error.status === 403){
+      errorMessage = "Acesso expirado, faça o login novamente."
+    }else{
+      errorMessage = `Código: ${error.error.code == undefined ? '000' : error.error.code } , Mensagem: ${error.error.message == undefined ? "Erro Desconhecido" : error.error.message}`;
     }
     window.alert(errorMessage);
     return throwError(errorMessage);
