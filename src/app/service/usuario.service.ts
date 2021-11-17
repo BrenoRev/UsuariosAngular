@@ -57,6 +57,18 @@ export class UsuarioService {
   getProfissaoList(): Observable<any>{
     return this.http.get(AppConstants.baseServidor + "profissao/")
   }
+
+  downloadRelatorio(id: number){
+    return this.http.get(AppConstants.baseServidor + `usuario/relatorio/${id}`, {responseType: 'text'}).subscribe(data => {
+     // base 64 text para pdf
+      var link = document.createElement('a');
+      link.href = data;
+      //abrir link em uma nova guia
+      link.download = 'relatorio.pdf';
+      link.click();
+      
+    });
+  }
 }
 
 

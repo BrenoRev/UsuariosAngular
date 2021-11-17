@@ -58,6 +58,10 @@ carregarPagina(pagina: number){
   })
 }
 
-  }
+mostrarRelatorio(id: number){
+ return this.service.downloadRelatorio(id);
+}
+
+}
 
 

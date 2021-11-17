@@ -14,6 +14,7 @@
         <th>CPF</th>
         <th>Delete</th>
         <th>Editar</th>
+        <th>Relatorio</th>
     </thead>
     <tbody>
         <tr *ngFor="let student of studentsMain | paginate:{ itemsPerPage:5, currentPage: p, totalItems : total }">
@@ -22,6 +23,7 @@
             <td *ngIf="(student.id !=0)">{{student.cpf! | mask:'000.000.000-00'}}</td>
             <td *ngIf="(student.id !=0)"><button class="btn btn-primary" (click)="deleteUsuario(student.id!)">Deletar</button></td>
             <td *ngIf="(student.id !=0)"><button [routerLink]="['/usuarioAdd/', student.id]" class="btn btn-secondary">Editar</button></td>
+            <td *ngIf="(student.id !=0)"><button class="btn btn-secondary" (click)="mostrarRelatorio(student.id!)">Relatorio</button></td>
         </tr>
     </tbody>
 </table>
