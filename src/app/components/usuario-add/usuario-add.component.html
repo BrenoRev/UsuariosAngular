@@ -15,7 +15,7 @@
         <div class="form-group col-md-12">
             <label for="email">Email</label>
             <span style="color: red;"*ngIf="emailValidate.invalid && emailValidate.touched">*</span>
-            <input [(ngModel)]="usuario.userEmail" #emailValidate="ngModel" type="email" class="form-control" id="email" autocomplete="false" required="true" name="email">
+            <input [(ngModel)]="usuario.userEmail" type="email" class="form-control" id="email" autocomplete="false" required="true" name="email">
         </div>
     </div>
 

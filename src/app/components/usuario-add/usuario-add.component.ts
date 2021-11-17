@@ -24,7 +24,7 @@ export class FormatDateAdapter extends NgbDateAdapter<string>{
     return null
   }
   toModel(date: NgbDateStruct | null): string | null {
-    return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : null;
+    return date ? this.validarDiaMes(date.day) + this.DELIMITER + this.validarDiaMes(date.month) + this.DELIMITER + date.year : null;
   }
 
   validarDiaMes(valor: number): number{
@@ -55,11 +55,12 @@ export class FormataData extends NgbDateParserFormatter{
   }
 
   toModel(date: NgbDateStruct | null): string | null {
-    return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : null;
+    return date ? this.validarDiaMes(date.day) + this.DELIMITER + date.month + this.DELIMITER + date.year : null;
   }
 
   validarDiaMes(valor: number){
     if(valor.toString() != '' && (valor) <= 9){
+      console.log('0'+valor)
       return '0' + valor;
     }
     return valor;
@@ -147,12 +148,25 @@ export class UsuarioAddComponent implements OnInit {
     }
   }
 
+  verifyData(){
+    var dia = this.usuario.userDataNascimento.split('/')[0];
+    var mes = this.usuario.userDataNascimento.split('/')[1];
+    var ano = this.usuario.userDataNascimento.split('/')[2];
+    if(parseInt(dia) <= 9){
+      dia = '0'+dia
+    }
+    if(parseInt(mes) <= 9){
+        mes = '0'+mes
+    }
+      return dia+'/'+mes+'/'+ano
+  }
+
   transferDTO(usuario: User){
     this.usuarioSave.id = parseInt(usuario.id.toString());
     this.usuarioSave.login = usuario.userLogin;
     this.usuarioSave.nome= usuario.userNome;
     this.usuarioSave.cpf = usuario.userCpf;
-    this.usuarioSave.dataNascimento = usuario.userDataNascimento;
+    this.usuarioSave.dataNascimento = this.verifyData();
     this.usuarioSave.salario = usuario.userSalario;
     this.usuarioSave.profissao = this.sendProfissao
     this.usuarioSave.email = usuario.userEmail;
