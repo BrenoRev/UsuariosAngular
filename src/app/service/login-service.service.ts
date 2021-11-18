@@ -20,8 +20,7 @@ export class LoginServiceService {
 
       // Salvando a token recebida da api no localstorage
       localStorage.setItem("token", token)
-
-      console.info("Token: " + localStorage.getItem("token"))
+      
       this.router.navigate(['/home'])
     }, error => {
       alert("Acesso negado, credenciais não foram aceitas")

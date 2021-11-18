@@ -131,6 +131,8 @@ export class UsuarioAddComponent implements OnInit {
 
     // Atualizando ou editando caso já exista um usuários
     if(this.usuario.id != 0){
+      this.transferDTO(this.usuario);
+      this.sendProfissao.id = this.idprofissao;
       this.service.patchUsuario(this.usuarioSave).subscribe(
         (data) => {
           this.profissoes = data;
